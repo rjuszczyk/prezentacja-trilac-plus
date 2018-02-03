@@ -50,6 +50,11 @@ public class SendFormImpl implements SendForm {
             @Override
             public void onResponse(Response<SendResponse> response) {
                 if (!cancelable.isCanceled()) {
+                    if(response.body()==null){
+                        onFailure(null);
+                        return;
+                    }
+
                     if(response.body().isSuccess()) {
                         callback.onSuccess();
                     } else {

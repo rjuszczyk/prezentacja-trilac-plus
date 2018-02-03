@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 import pl.pharmaway.prezentacjatrilacplus.database.DatabaseHelper;
 import pl.pharmaway.prezentacjatrilacplus.database.NotSendDataRow;
 import pl.pharmaway.prezentacjatrilacplus.mvp.fake.FormDataRepositoryImpl;
@@ -19,6 +22,7 @@ import pl.pharmaway.prezentacjatrilacplus.view.ChooseLekarzDialog;
 
 public class FormActivity extends AppCompatActivity
 implements ChooseAgentDialog.AgentDialogListener, ChooseLekarzDialog.LekarzDialogListener {
+
     TextView agent;
     TextView lekarz;
     View next;
@@ -73,6 +77,7 @@ implements ChooseAgentDialog.AgentDialogListener, ChooseLekarzDialog.LekarzDialo
                 notSendDataRow.agent = agent.getText().toString();
                 notSendDataRow.lekarz = lekarz.getText().toString();
                 notSendDataRow.appId = Constants.APP_ID;
+                notSendDataRow.createDate = new Date().toString();
                 notSendDataRow.lekarzType = Constants.LEKARZ_TYPE;
                 notSendDataRow.timeInApp = timeSpendInApp.getTimeFormatted();
                 notSendDataRow.firstChoice = firstChoice.getFirstChoice();

@@ -62,7 +62,6 @@ public abstract class FooterActivity extends AppCompatActivity {
         super.onPause();
         long delta = System.currentTimeMillis() - startTime;
         timeSpendInApp.addTime(delta);
-
     }
 
     protected void onNextClicked() {
