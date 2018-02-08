@@ -17,10 +17,12 @@ public abstract class FooterActivity extends AppCompatActivity {
     @Nullable private View buttonPrev;
     TimeSpendInApp timeSpendInApp;
     long startTime;
+    private boolean goToSummary;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        goToSummary = getIntent().getBooleanExtra("goToSummary", false);
         getWindow().getDecorView().setSystemUiVisibility(
                 SYSTEM_UI_FLAG_IMMERSIVE_STICKY |
                         SYSTEM_UI_FLAG_FULLSCREEN |
@@ -65,7 +67,12 @@ public abstract class FooterActivity extends AppCompatActivity {
     }
 
     protected void onNextClicked() {
-        Intent intent = new Intent(this, getNextActivity());
+        Intent intent;
+        if(!goToSummary) {
+            intent = new Intent(this, getNextActivity());
+        } else {
+            intent = new Intent(this, Page6.class);
+        }
         startActivity(intent);
     }
 
