@@ -1,10 +1,13 @@
 package pl.pharmaway.prezentacjatrilacplus;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 
 public class Page6 extends FooterActivity {
+
+    private boolean goBackToMenu;
 
     protected long getDelay() {
         return 500;
@@ -17,6 +20,8 @@ public class Page6 extends FooterActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        goBackToMenu = getIntent().getBooleanExtra("goBackToMenu", false);
 
         View p6_1 = findViewById(R.id.p6_1);
         View p6_2 = findViewById(R.id.p6_2);
@@ -91,6 +96,17 @@ public class Page6 extends FooterActivity {
                     p6_11,
                     p6_12
             );
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(!goBackToMenu) {
+            super.onBackPressed();
+        } else {
+            Intent intent = new Intent(this, Page2.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
         }
     }
 
